@@ -10,7 +10,8 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent  {
 
-    form: FormGroup;        
+    form: FormGroup;
+    isSubmitted: boolean = false;        
 
     constructor(fb: FormBuilder, private _loginService: LoginService){        
 
@@ -27,6 +28,12 @@ export class LoginComponent  {
             this.form.controls['password'].setErrors({
                 invalidLogin: true 
             });
+        } else {
+            this.isSubmitted = false;
         }        
+    }
+
+    canDeactivate() {
+        return !this.isSubmitted;
     }
 }

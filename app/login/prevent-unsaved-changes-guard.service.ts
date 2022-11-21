@@ -4,7 +4,7 @@ import { LoginComponent } from './login.component';
 export class PreventUnsavedChangesGuard implements CanDeactivate<LoginComponent>{
 
   canDeactivate(component: LoginComponent){
-    if(component.form.dirty)
+    if(component.form.dirty && component.canDeactivate())
       return confirm("Are you sure?");
     
     return true;
